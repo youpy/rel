@@ -192,6 +192,15 @@ func TestAlterTable(t *testing.T) {
 			Name: "column",
 		}, table.Definitions[len(table.Definitions)-1])
 	})
+
+	t.Run("DropForeinKey", func(t *testing.T) {
+		table.DropForeignKey("fk")
+		assert.Equal(t, Key{
+			Op:   SchemaDrop,
+			Type: ForeignKey,
+			Name: "fk",
+		}, table.Definitions[len(table.Definitions)-1])
+	})
 }
 
 func TestCreateTable(t *testing.T) {

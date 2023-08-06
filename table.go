@@ -141,6 +141,11 @@ func (at *AlterTable) DropColumn(name string, options ...ColumnOption) {
 	at.Definitions = append(at.Definitions, dropColumn(name, options))
 }
 
+// DropForeignKey from this table.
+func (at *AlterTable) DropForeignKey(name string) {
+	at.Definitions = append(at.Definitions, dropForeignKey(name))
+}
+
 func createTable(name string, options []TableOption) Table {
 	table := Table{
 		Op:   SchemaCreate,

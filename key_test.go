@@ -48,6 +48,18 @@ func TestCreateUniqueKey(t *testing.T) {
 	}, index)
 }
 
+func TestDropForeignKey(t *testing.T) {
+	var (
+		index = dropForeignKey("fk")
+	)
+
+	assert.Equal(t, Key{
+		Op:   SchemaDrop,
+		Type: ForeignKey,
+		Name: "fk",
+	}, index)
+}
+
 func TestKey_InternalTableDefinition(t *testing.T) {
 	assert.NotPanics(t, func() { Key{}.internalTableDefinition() })
 }

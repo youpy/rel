@@ -63,4 +63,12 @@ func createForeignKey(column string, refTable string, refColumn string, options 
 	return key
 }
 
+func dropForeignKey(name string) Key {
+	return Key{
+		Op:   SchemaDrop,
+		Type: ForeignKey,
+		Name: name,
+	}
+}
+
 // TODO: Rename and Drop, PR welcomed.
